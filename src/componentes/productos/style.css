@@ -1,0 +1,25 @@
+@media only screen and (min-width: 320px) and (max-width:450px) {
+    .estilo_admin_productos, .edicion_precios{
+        flex-direction: column;
+        justify-content: center;
+        justify-items: space-between;
+        width: 100%;
+        
+    }
+    .btns_edicion{
+        margin-left: 10px;
+        margin-top: 10px;
+        width: 70%;
+    }
+    .btn_agregaProducto{
+        margin-left: 33px;
+        margin-top: 10px;
+        width: 70%;
+    }
+    .btn_actualizar{
+        margin-left: 33px !important ;
+        margin-top: 10px;
+        width: 70%;
+    }
+    
+  }
