@@ -74,6 +74,7 @@ const EditarProducto = ({ idProducto }) => {
                 onChange={(e) =>
                   setProductoDatos({ ...productoDatos, precio: e.target.value })
                 }
+                onWheel={(e) => e.target.blur()}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
