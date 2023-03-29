@@ -1,16 +1,18 @@
 import React, { useEffect, useState, useMemo } from "react";
 import DataTable from "react-data-table-component";
-import { useProductos } from "../../contexto/ContextoProductos";
+import { useContextoApp } from "../../contexto/ContextoProductos";
 import swal from "sweetalert";
-import EditarProducto from "./EditarProducto";
+import EditarProducto from "./editaProductos/EditarProducto";
 
 const TablaProductos = () => {
   const [data, setData] = useState([]);
-  const { obtenerTodosLosProductos, productos, eliminarProductoConID } = useProductos();
+  const { obtenerTodosLosProductos, productos, eliminarProductoConID } = useContextoApp();
   const [pending, setPending] = useState(true);
   const eliminarProducto = (id)=>{
-    eliminarProductoConID(id)
+    if(confirm("Desea eliminar el producto?")){
+      eliminarProductoConID(id)
     swal({text:"Producto eliminado correctamente", icon:"success"})
+    }
   }
   useEffect(() => {
     (async () => {
@@ -25,7 +27,7 @@ const TablaProductos = () => {
         id: p.id,
         nombre: p.data.nombre,
         precio: p.data.precio,
-        articulo:p.data.articulo,
+        categoria:p.data.categoria,
         acciones: (
           <div key={p.id} data-product-id={p.id}>
             <EditarProducto idProducto={p.id} />
@@ -52,8 +54,8 @@ const TablaProductos = () => {
       sortable: true,
     },
     {
-      name: "Articulo",
-      selector: (row) => row.articulo,
+      name: "Categoria",
+      selector: (row) => row.categoria,
       sortable: true,
     },
     {

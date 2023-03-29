@@ -1,18 +1,19 @@
 import React, { useEffect } from "react";
-import { useProductos } from "../../contexto/ContextoProductos";
+import { useContextoApp } from "../../contexto/ContextoProductos";
 import ListaProductos from "./ListaProductos";
 
 const Main = () => {
-  const { productos, obtenerTodosLosProductos } = useProductos();
+  const { productos, obtenerTodosLosProductos } = useContextoApp();
   useEffect(() => {
     obtenerTodosLosProductos();
   }, []);
+  const productosOrdenados = productos.sort(((a, b) => a.data.numProducto - b.data.numProducto))
   return (
     <div
       className="d-flex flex-wrap"
-      style={{ marginTop: "55px", justifyContent: "center" }}
+      style={{marginTop: "55px", justifyContent: "center" }}
     >
-      <ListaProductos prods={productos} />
+      <ListaProductos prods={ productosOrdenados} />
     </div>
   );
 };

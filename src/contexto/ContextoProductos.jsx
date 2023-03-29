@@ -9,7 +9,7 @@ import {
 import { authInicioSesion, obtenerRolUsuario } from "../firebase/funcionesUsuarios";
 
 export const ContextoProductos = createContext();
-export const useProductos = () => {
+export const useContextoApp = () => {
   const contexto = useContext(ContextoProductos);
   if (!contexto) {
     throw new Error(

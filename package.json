@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.10.3",
+    "file-saver": "^2.0.5",
     "firebase": "^9.17.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
+    "react-csv": "^2.2.2",
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

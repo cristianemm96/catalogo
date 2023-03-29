@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useSearchParams} from 'react-router-dom'
-import { useProductos } from "../../../contexto/ContextoProductos";
+import { useContextoApp } from "../../../contexto/ContextoProductos";
 import Spinner  from "./Spinner";
 import ListaProductos from "../../main/ListaProductos";
 
@@ -8,8 +7,8 @@ const Resultado = () => {
   const [resultadoProductos, setResultado] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
   const queryPalabra = new URLSearchParams(window.location.search);
-  const palabra = queryPalabra.get("palabra-buscada");
-  const { productos, obtenerTodosLosProductos } = useProductos();
+  const palabra = queryPalabra.get("palabra-buscada").toLowerCase();
+  const { productos, obtenerTodosLosProductos } = useContextoApp();
   useEffect(() => {
     obtenerTodosLosProductos();
     setTimeout(function () {
@@ -17,12 +16,11 @@ const Resultado = () => {
     }, 50);
   }, []);
   useEffect(() => {
-    const reg = RegExp(`${palabra}`, "g");
     const productosFiltrados = productos?.filter(
       (p) =>
-        reg.test(p.data.nombre.toLowerCase()) ||
-        reg.test(p.data.descripcion.toLowerCase())
-    );
+        p.data.nombre.toLowerCase().includes(palabra) 
+        || p.data.descripcion.toLowerCase().includes(palabra)
+    )
     setResultado(productosFiltrados);
   }, [productos]);
   return (

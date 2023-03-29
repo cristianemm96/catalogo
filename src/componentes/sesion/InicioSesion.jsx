@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useRef } from "react";
-import { useProductos } from "../../contexto/ContextoProductos";
+import React, { useCallback, useRef } from "react";
+import { useContextoApp } from "../../contexto/ContextoProductos";
 import { Navigate} from 'react-router-dom'
 import swal from "sweetalert";
 
 const InicioSesion = () => {
   const email = useRef('')
   const contraseña = useRef('')
-  const { iniciarSesion, usuario } = useProductos();
+  const { iniciarSesion, usuario } = useContextoApp();
   const submitHandler = useCallback(async(e) => {
     e.preventDefault();
     try{

@@ -9,7 +9,7 @@ const Footer = () => {
           style={{backgroundColor:"#343a40"}}
         >
           © 2023 Copyright: 
-          <a className="text-white" href="https://mdbootstrap.com/">
+          <a className="text-white" href="https://github.com/cristianemm96">
           &nbsp;CM
           </a>
         </div>

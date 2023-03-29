@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import Buscador from "./buscador/Buscador";
 import { Link } from "react-router-dom";
 import { obtenerRolUsuario } from "../../firebase/funcionesUsuarios";
-import { useProductos } from "../../contexto/ContextoProductos";
+import { useContextoApp } from "../../contexto/ContextoProductos";
+import { ExportarExcell } from "./ExportarExcell";
 
 const Header = () => {
   const [rol, setRol] = useState(null);
-  const {usuario, eliminarSesionUsuario} = useProductos()
+  const { usuario, eliminarSesionUsuario } = useContextoApp();
   const token = JSON.parse(sessionStorage.getItem("token"));
   useEffect(() => {
     if (token) {
       (async () => {
         const rolF = await obtenerRolUsuario();
-        if(!rolF){
-        }else{
-          setRol(rolF.rol)
+        if (!rolF) {
+        } else {
+          setRol(rolF.rol);
         }
       })();
     }
@@ -48,11 +49,21 @@ const Header = () => {
                   </Link>
                 )}
               </li>
-              <li className="nav-item"></li>
+              <li className="nav-item">
+                {rol == "admin" && <ExportarExcell />}
+              </li>
               <li className="nav-item ml-auto"></li>
             </ul>
             <Buscador />
-            {token != null && <button onClick={()=>eliminarSesionUsuario()} className="btn btn-danger" style={{marginLeft:"8px"}}>Cerrar sesion</button>}
+            {token != null && (
+              <button
+                onClick={() => eliminarSesionUsuario()}
+                className="btn btn-danger"
+                style={{ marginLeft: "8px" }}
+              >
+                Cerrar sesion
+              </button>
+            )}
           </div>
         </nav>
       </header>

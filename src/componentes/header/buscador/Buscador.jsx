@@ -1,6 +1,7 @@
 import React,{useCallback} from "react";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import './style.css'
 
 const Buscador = () => {
   const navigate = useNavigate()
@@ -16,7 +17,7 @@ const Buscador = () => {
   },[])
   return (
     <>
-      <form className="d-flex align-items-center ml-auto" onSubmit={realizarBusqueda}>
+      <form className="d-flex align-items-center ml-auto busqueda" onSubmit={realizarBusqueda}>
         <label className="form-label mx-2 mb-0">
           <input
             type="text"
