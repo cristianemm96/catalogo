@@ -19,7 +19,6 @@ export const guardarProducto = async (producto) => {
   const docRef = doc(db, "cantidadProductos", "r18ltw7YcVBTW2xuaLLm");
   const docSnap = await getDoc(docRef);
   let cant = docSnap.data()
-  console.log(cant)
   await addDoc(collection(db, "productos"), {
     nombre: producto.nombre,
     precio: parseInt(producto.precio),
@@ -56,4 +55,10 @@ export const editarProductoID = async (producto, id) => {
 
 export const eliminarProductoID = async (id) => {
   await deleteDoc(doc(db, "productos", id));
+  const docRef = doc(db, "cantidadProductos", "r18ltw7YcVBTW2xuaLLm");
+  const docSnap = await getDoc(docRef);
+  let cant = docSnap.data()
+  await setDoc(doc(db, "cantidadProductos", "r18ltw7YcVBTW2xuaLLm"), {
+    cantidadActual: cant.cantidadActual - 1 
+  })
 };
